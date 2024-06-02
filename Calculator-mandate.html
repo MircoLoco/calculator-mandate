@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator pentru repartizarea mandatelor în consiliile Locale</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Calculator pentru repartizarea mandatelor în consiliile Locale</h1>
+        <p class="text-center">Realizat de: Mircea Preotescu</p>
+        <div class="alert alert-warning text-center" role="alert">
+            <strong>Avertisment:</strong> Calculatorul este un program pilot independent care poate genera erori și nu trebuie să fie folosit în mod oficial pentru calcularea mandatelor. Calculatorul în versiunea actuală nu poate procesa repartizarea mandatelor pentru minorități.
+        </div>
+        
+        <div id="mandate-group" class="card card-body">
+            <h2>Introduceți numărul de mandate de consilieri din localitate</h2>
+            <div class="form-group">
+                <label for="numar-mandate">Numărul mandatelor de consilier local:</label>
+                <input type="number" id="numar-mandate" class="form-control" min="1">
+            </div>
+            <button onclick="setTotalMandates()" class="btn btn-primary btn-block">Setează numărul de mandate</button>
+        </div>
+
+        <table id="mandates-table" class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Număr Mandate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="mandates-cell"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="card card-body">
+            <h2>Introduceți date privind competitorii electorali din localitate</h2>
+            <div class="alert alert-warning" role="alert">
+                <strong>Avertisment:</strong> pentru calcularea corectă trebuiesc introduse date despre toți competitorii electorali care au participat la alegerea consiliului local.
+            </div>
+            <form id="competitor-form">
+                <div class="form-group">
+                    <label for="competitor-name">Numele competitorului:</label>
+                    <input type="text" id="competitor-name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="competitor-votes">Numărul de voturi obținute:</label>
+                    <input type="number" id="competitor-votes" class="form-control" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="competitor-type">Tipul competitorului electoral:</label>
+                    <select id="competitor-type" class="form-control">
+                        <option value="partid">Partid Politic</option>
+                        <option value="independent">Candidat Independent</option>
+                        <option value="alianta">Alianță</option>
+                    </select>
+                </div>
+                <div id="parties-count-group" class="form-group hidden">
+                    <label for="parties-count">Număr de partide în alianță:</label>
+                    <input type="number" id="parties-count" class="form-control" min="2">
+                </div>
+                <button type="button" onclick="addCompetitor()" class="btn btn-success btn-block">Introduce Competitor Nou</button>
+                <button type="button" onclick="finalizeCompetitors()" class="btn btn-secondary btn-block">Calculează mandate</button>
+            </form>
+        </div>
+
+        <table id="competitors-table" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Numele competitorului</th>
+                    <th>Numărul de voturi obținute</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div id="result" class="card card-body"></div>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
